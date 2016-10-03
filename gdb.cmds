@@ -1,0 +1,16 @@
+# b udp_recv
+# b sync-mode.c:185 if numbytes >= 16
+# command 1
+# print numbytes
+# x/15x ptr
+# end
+# b udp.c:210
+# command 1
+# print ret
+# end
+# b fds.c:124
+b channel_handler
+# b channel_handler_routine
+# b sync-notrack.c:249
+layout src
+run -C bla.conf -X kuku.conf
