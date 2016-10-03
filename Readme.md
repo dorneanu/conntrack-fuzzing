@@ -5,7 +5,7 @@ Fuzzing conntrackd and conntrack tools. More infos to come ...
 Configure:
 
 ```
-$ CC=afl-gcc AFL_USE_ASAN=1 CFLAGS=-DFUZZ ./configure
+$ CC=afl-gcc AFL_USE_ASAN=1 CFLAGS=-DFUZZ LDFLAGS=-ldl ./configure
 ```
 
 Compile: 
