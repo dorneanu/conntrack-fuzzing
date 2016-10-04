@@ -388,6 +388,7 @@ int main(int argc, char *argv[])
 	/*
 	 * lock file
 	 */
+#ifndef FUZZ
 	ret = open(CONFIG(lockfile), O_CREAT | O_EXCL | O_TRUNC, 0600);
 	if (ret == -1) {
 		fprintf(stderr, "lockfile `%s' exists, perhaps conntrackd "
@@ -395,6 +396,7 @@ int main(int argc, char *argv[])
 		exit(EXIT_FAILURE);
 	}
 	close(ret);
+#endif
 
 	/*
 	 * Setting process priority and scheduler
@@ -421,7 +423,9 @@ int main(int argc, char *argv[])
 		close_log();
 		fprintf(stderr, "ERROR: conntrackd cannot start, please "
 				"check the logfile for more info\n");
+#ifndef FUZZ
 		unlink(CONFIG(lockfile));
+#endif
 		exit(EXIT_FAILURE);
 	}
 

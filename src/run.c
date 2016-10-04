@@ -61,7 +61,9 @@ void killer(int signo)
 		cthelper_kill();
 #endif
 	destroy_fds(STATE(fds));
+#ifndef FUZZ
 	unlink(CONFIG(lockfile));
+#endif
 	dlog(LOG_NOTICE, "---- shutdown received ----");
 	close_log();
 
