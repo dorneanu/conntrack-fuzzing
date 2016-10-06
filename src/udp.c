@@ -228,7 +228,6 @@ ssize_t my_udp_recv(struct udp_sock *m, void *data, int size, char *filename) {
 ssize_t udp_recv(struct udp_sock *m, void *data, int size)
 {
 	ssize_t ret;
-    printf("DEBUG2: %s\n", CONFIG(fuzz_file));
 	socklen_t sin_size = sizeof(struct sockaddr_in);
 
         ret = recvfrom(m->fd,
